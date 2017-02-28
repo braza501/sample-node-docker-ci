@@ -1,12 +1,12 @@
 #!/bin/bash
-docker build -t kostyaurysov/sample-node .
-docker push kostyaurysov/sample-node
 
-ssh deploy@35.187.30.81 << EOF
-docker pull kostyaurysov/sample-node:latest
+docker push braza501/sample-node
+
+ssh -t -t tenrakyshka@35.187.4.71 << EOF
+docker pull braza501/sample-node:latest
 docker stop web || true
 docker rm web || true
-docker rmi kostyaurysov/sample-node:current || true
-docker tag kostyaurysov/sample-node:latest kostyaurysov/sample-node:current
-docker run -d --net app --restart always --name web -p 80:80 kostyaurysov/sample-node:current
+docker rmi braza501/sample-node:current || true
+docker tag braza501/sample-node:latest braza501/sample-node:current
+docker run -d --net my-network --restart always --name web -p 80:80 braza501/sample-node:current
 EOF
