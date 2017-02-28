@@ -2,7 +2,7 @@
 
 docker push braza501/sample-node
 
-ssh -t -t tenrakyshka@35.187.4.71 << EOF
+ssh tenrakyshka@35.187.4.71 << EOF
 docker pull braza501/sample-node:latest
 docker stop web || true
 docker rm web || true
